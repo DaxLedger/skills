@@ -55,16 +55,18 @@ These credentials are exchanged for a **JWT token** via the authentication endpo
 
 If the skill is published in a skills registry:
 
-npx skills add daxledger/skills --yes
+npx skills add https://github.com/DaxLedger/skills --yes
 
 Or manually copy the folder into your project:
-
-skills/
-└─ daxledger-api/
-   ├─ SKILL.md
-   └─ references/
-      └─ apis.md
-
+```
+.
+├── README.md
+└── skills
+    └── daxledger-api
+        ├── references
+        │   └── apis.md
+        └── SKILL.md
+```
 ---
 
 # API Workflow
