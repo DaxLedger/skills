@@ -20,6 +20,19 @@ All authenticated endpoints require a Bearer JWT token.
 
 ---
 
+# Environment Variables
+
+The API credentials must be provided through the following environment variables:
+
+| Variable | Description |
+|--------|-------------|
+| DAXLEDGER_API_KEY | API key used to authenticate with the DAX Ledger API |
+| DAXLEDGER_API_SECRET | API secret used together with the API key |
+
+These variables are used when calling the authentication endpoint.
+
+---
+
 # Authentication
 
 ## Endpoint
@@ -30,8 +43,8 @@ Exchange an APIKey + APISecret for a JWT token.
 ### Request
 
 {
-  "APIKey": "string",
-  "APISecret": "string"
+  "APIKey": "{{DAXLEDGER_API_KEY}}",
+  "APISecret": "{{DAXLEDGER_API_SECRET}}"
 }
 
 ### Response
@@ -69,6 +82,13 @@ Follow this sequence when interacting with the API.
 ### 1 Authenticate
 
 POST /api/auth/external_api
+
+Body:
+
+{
+  "APIKey": "{{DAXLEDGER_API_KEY}}",
+  "APISecret": "{{DAXLEDGER_API_SECRET}}"
+}
 
 Store the returned token.
 
