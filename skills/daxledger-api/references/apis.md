@@ -24,6 +24,55 @@ GET /api/portfolio/{portfolioId}/kpis/portfolio
 
 ---
 
+# Findings
+
+## List Findings
+
+GET /api/portfolio/{portfolioId}/findings
+
+Query parameters:
+
+page  
+pageSize  
+
+---
+
+## Finding By Rule/Tx Id
+
+GET /api/portfolio/{portfolioId}/findings/{txId}
+
+
+---
+
+# Position Snapshot
+
+## Positions Snapshot (balances and values)
+
+GET /api/portfolio/{portfolioId}/position_snapshot
+
+Query parameters:
+
+page  
+pageSize  
+filter  
+sort  
+
+---
+
+## Position Snapshot Graph By Ticker
+
+GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}
+
+Query parameters:
+
+span
+- 7: 7 days interval
+- 30: 30 days interval
+- 365: 365 days interval
+- -1: all range available
+
+---
+
 # Transactions
 
 GET /api/portfolio/{portfolioId}/transactions

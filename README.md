@@ -7,6 +7,9 @@ Capabilities:
 - Authentication
 - Portfolio listing
 - Portfolio KPIs
+- Portfolio findings
+- Position snapshot (balances and values)
+- Position snapshot graph by ticker
 - Transactions history
 - Transaction filtering
 - Multi-filter queries
@@ -41,6 +44,24 @@ skills/daxledger-api/SKILL.md
 Endpoint
 
 GET /api/portfolio/{portfolioId}/transactions
+
+---
+
+# Findings
+
+Endpoints
+
+GET /api/portfolio/{portfolioId}/findings?page=1&pageSize=20  
+GET /api/portfolio/{portfolioId}/findings/{txId}
+
+---
+
+# Position Snapshot
+
+Endpoints
+
+GET /api/portfolio/{portfolioId}/position_snapshot?page=1&pageSize=20  
+GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span=30
 
 Supported filters
 

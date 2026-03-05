@@ -1,9 +1,8 @@
-
 ---
 name: daxledger-api
 description: >
   Use the DAX Ledger API to authenticate, list portfolios, retrieve portfolio KPIs,
-  and list/filter transactions with pagination.
+  list findings, retrieve position snapshots, and list/filter transactions with pagination.
 ---
 
 # DAX Ledger API
@@ -15,9 +14,9 @@ https://app.daxledger.io
 
 # Environment Variables
 
-| Variable | Description |
-|--------|-------------|
-| DAXLEDGER_API_KEY | API key used to authenticate |
+| Variable             | Description                     |
+| -------------------- | ------------------------------- |
+| DAXLEDGER_API_KEY    | API key used to authenticate    |
 | DAXLEDGER_API_SECRET | API secret used to authenticate |
 
 ---
@@ -29,14 +28,14 @@ POST /api/auth/external_api
 Body:
 
 {
-  "APIKey": "{{DAXLEDGER_API_KEY}}",
-  "APISecret": "{{DAXLEDGER_API_SECRET}}"
+"APIKey": "{{DAXLEDGER_API_KEY}}",
+"APISecret": "{{DAXLEDGER_API_SECRET}}"
 }
 
 Response:
 
 {
-  "token": "your_access_token_here"
+"token": "your_access_token_here"
 }
 
 Header for authenticated calls:
@@ -47,13 +46,17 @@ Authorization: Bearer {{token}}
 
 # Pick Your Endpoint
 
-| You need | Endpoint | Ref |
-|--------|--------|-----|
-| Authenticate | POST /api/auth/external_api | references/apis.md |
-| List portfolios | GET /api/portfolios | references/apis.md |
-| Get KPIs | GET /api/portfolio/{portfolioId}/kpis/portfolio | references/apis.md |
-| List transactions | GET /api/portfolio/{portfolioId}/transactions?page=1&pageSize=20 | references/apis.md |
-| Filter transactions | GET /api/portfolio/{portfolioId}/transactions?filter=<BASE64> | references/apis.md |
+| You need                                    | Endpoint                                                                  | Ref                |
+| ------------------------------------------- | ------------------------------------------------------------------------- | ------------------ |
+| Authenticate                                | POST /api/auth/external_api                                               | references/apis.md |
+| List portfolios                             | GET /api/portfolios                                                       | references/apis.md |
+| Get KPIs                                    | GET /api/portfolio/{portfolioId}/kpis/portfolio                           | references/apis.md |
+| Get findings (problems in portfolio)        | GET /api/portfolio/{portfolioId}/findings?page=1&pageSize=20              | references/apis.md |
+| Get finding by rule id                      | GET /api/portfolio/{portfolioId}/findings/{txId}                          | references/apis.md |
+| Get position snapshot (balances and values) | GET /api/portfolio/{portfolioId}/position_snapshot?page=1&pageSize=20     | references/apis.md |
+| Get token position graph                    | GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span=30 | references/apis.md |
+| List transactions                           | GET /api/portfolio/{portfolioId}/transactions?page=1&pageSize=20          | references/apis.md |
+| Filter transactions                         | GET /api/portfolio/{portfolioId}/transactions?filter=<BASE64>             | references/apis.md |
 
 ---
 
@@ -67,7 +70,67 @@ Query params
 
 page  
 pageSize  
+filter
+
+---
+
+# Findings
+
+## List Findings
+
+Endpoint
+
+GET /api/portfolio/{portfolioId}/findings
+
+Query params
+
+page  
+pageSize
+
+Use this endpoint when the user asks for problems or findings in a portfolio.
+
+---
+
+## Finding By Rule/Tx Id
+
+Endpoint
+
+GET /api/portfolio/{portfolioId}/findings/{txId}
+
+Use this endpoint when the user asks for findings tied to a specific rule/identifier returned in findings.
+
+---
+
+# Position Snapshot
+
+## Positions Snapshot (balances and values)
+
+Endpoint
+
+GET /api/portfolio/{portfolioId}/position_snapshot
+
+Query params
+
+page  
+pageSize  
 filter  
+sort
+
+Use this endpoint when the user asks about token balance or token value.
+
+---
+
+## Position Snapshot Graph By Ticker
+
+Endpoint
+
+GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}
+
+Query params
+
+span (7, 30, 365, -1)
+
+Use this endpoint when the user asks about a specific token holding over time or on a specific date range.
 
 ---
 
@@ -78,6 +141,8 @@ Filters must be encoded with Base64 before sending.
 ---
 
 ## Transaction Hash
+
+Operator: contains
 
 {"transactionHash":{"operator":"contains","value":"123456789"}}
 
@@ -99,18 +164,18 @@ Operator: contains_in
 
 Available transaction types:
 
-- airdrop  
-- bonus  
-- computed-deposit  
-- computed-reward  
-- deposit  
-- other  
-- reward  
-- staking  
-- trade  
-- unknown  
-- unstaking  
-- withdrawal  
+- airdrop
+- bonus
+- computed-deposit
+- computed-reward
+- deposit
+- other
+- reward
+- staking
+- trade
+- unknown
+- unstaking
+- withdrawal
 
 ---
 
@@ -127,15 +192,15 @@ Example combining:
 Example JSON:
 
 {
-  "transactionHash": { "operator": "contains", "value": "123456" },
-  "transactionType": { "operator": "contains_in", "value": ["trade","deposit"] },
-  "transactionDate": {
-    "operator": "between",
-    "value": {
-      "startDate": "2026-03-01T00:00:00Z",
-      "endDate": "2026-03-31T23:59:59Z"
-    }
-  }
+"transactionHash": { "operator": "contains", "value": "123456" },
+"transactionType": { "operator": "contains_in", "value": ["trade","deposit"] },
+"transactionDate": {
+"operator": "between",
+"value": {
+"startDate": "2026-03-01T00:00:00Z",
+"endDate": "2026-03-31T23:59:59Z"
+}
+}
 }
 
 Encode this JSON to Base64 and pass it as:
