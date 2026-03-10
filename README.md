@@ -101,6 +101,21 @@ GET /api/portfolio/{portfolioId}/transactions?filter=<BASE64>&page=1&pageSize=20
 
 ---
 
+# Epoch Fields
+
+If an API field is an epoch timestamp, convert it to ISO date before returning it to the user.
+
+Rule:
+
+- 10 digits -> seconds
+- 13 digits -> milliseconds
+
+Example (Node):
+
+new Date(Number(epoch) < 1e12 ? Number(epoch) * 1000 : Number(epoch)).toISOString()
+
+---
+
 # Pagination
 
 page starts at 1

@@ -37,9 +37,9 @@ pageSize
 
 ---
 
-## Finding By Rule/Tx Id
+## Finding By Rule Id
 
-GET /api/portfolio/{portfolioId}/findings/{txId}
+GET /api/portfolio/{portfolioId}/finding/{ruleId}
 
 
 ---
@@ -151,6 +151,21 @@ btoa(JSON.stringify(filter))
 Node:
 
 Buffer.from(JSON.stringify(filter)).toString("base64")
+
+---
+
+# Epoch Fields
+
+If an API field is an epoch timestamp, convert it to ISO date before returning it to the user.
+
+Rule:
+
+- 10 digits -> seconds
+- 13 digits -> milliseconds
+
+Example (Node):
+
+new Date(Number(epoch) < 1e12 ? Number(epoch) * 1000 : Number(epoch)).toISOString()
 
 ---
 

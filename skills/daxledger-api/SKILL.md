@@ -52,7 +52,7 @@ Authorization: Bearer {{token}}
 | List portfolios                             | GET /api/portfolios                                                       | references/apis.md |
 | Get KPIs                                    | GET /api/portfolio/{portfolioId}/kpis/portfolio                           | references/apis.md |
 | Get findings (problems in portfolio)        | GET /api/portfolio/{portfolioId}/findings?page=1&pageSize=20              | references/apis.md |
-| Get finding by rule id                      | GET /api/portfolio/{portfolioId}/findings/{txId}                          | references/apis.md |
+| Get finding by rule id                      | GET /api/portfolio/{portfolioId}/finding/{ruleId}                          | references/apis.md |
 | Get position snapshot (balances and values) | GET /api/portfolio/{portfolioId}/position_snapshot?page=1&pageSize=20     | references/apis.md |
 | Get token position graph                    | GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span=30 | references/apis.md |
 | List transactions                           | GET /api/portfolio/{portfolioId}/transactions?page=1&pageSize=20          | references/apis.md |
@@ -91,11 +91,11 @@ Use this endpoint when the user asks for problems or findings in a portfolio.
 
 ---
 
-## Finding By Rule/Tx Id
+## Finding By Rule Id
 
 Endpoint
 
-GET /api/portfolio/{portfolioId}/findings/{txId}
+GET /api/portfolio/{portfolioId}/finding/{ruleId}
 
 Use this endpoint when the user asks for findings tied to a specific rule/identifier returned in findings.
 
@@ -218,6 +218,21 @@ btoa(JSON.stringify(filter))
 Node
 
 Buffer.from(JSON.stringify(filter)).toString("base64")
+
+---
+
+# Epoch Fields
+
+If an API field is an epoch timestamp, convert it to ISO date before returning it to the user.
+
+Rule:
+
+- 10 digits -> seconds
+- 13 digits -> milliseconds
+
+Example (Node):
+
+new Date(Number(epoch) < 1e12 ? Number(epoch) * 1000 : Number(epoch)).toISOString()
 
 ---
 
