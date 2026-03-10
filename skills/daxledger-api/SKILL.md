@@ -57,6 +57,7 @@ Authorization: Bearer {{token}}
 | Get token position graph                    | GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span=30 | references/apis.md |
 | Get DeFi positions                          | GET /api/portfolio/{portfolioId}/positions_report/defi                     | references/apis.md |
 | Get capital gains report                    | GET /api/portfolio/{portfolioId}/capital_gains_report?page=1&pageSize=20  | references/apis.md |
+| Get capital gains available filters         | GET /api/portfolio/{portfolioId}/capital_gains_report/filters              | references/apis.md |
 | Get sanity check report                     | GET /api/portfolio/{portfolioId}/sanity_check_report?page=1&pageSize=20   | references/apis.md |
 | Get calculation summary report              | GET /api/portfolio/{portfolioId}/calculation_summary_report?page=1&pageSize=20 | references/apis.md |
 | Get fiscal report                           | GET /api/portfolio/{portfolioId}/fiscal_report?page=1&pageSize=20         | references/apis.md |
@@ -157,6 +158,10 @@ Endpoint
 
 GET /api/portfolio/{portfolioId}/capital_gains_report
 
+Available filters endpoint
+
+GET /api/portfolio/{portfolioId}/capital_gains_report/filters
+
 Query params
 
 page  
@@ -165,6 +170,14 @@ filter
 sort
 
 Use this endpoint when the user asks for gains/losses by asset and realized/unrealized values.
+
+Capital gains filters:
+
+- digitalAssetTicker (operator: contains_in)
+- report_year (operator: =)
+- portfolioConnection (operator: =)
+
+If `isSeparateSetting=true` in capital gains response, run the endpoint with several filters using the values from `/capital_gains_report/filters` to retrieve separate results.
 
 ---
 

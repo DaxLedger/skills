@@ -85,12 +85,24 @@ GET /api/portfolio/{portfolioId}/positions_report/defi
 
 GET /api/portfolio/{portfolioId}/capital_gains_report
 
+Available filters endpoint:
+
+GET /api/portfolio/{portfolioId}/capital_gains_report/filters
+
 Query parameters:
 
 page  
 pageSize  
 filter  
 sort  
+
+Capital gains filters:
+
+- digitalAssetTicker (operator: contains_in)
+- report_year (operator: =)
+- portfolioConnection (operator: =)
+
+If `isSeparateSetting=true` in capital gains response, run the report with several filters using values from `/capital_gains_report/filters`.
 
 ---
 

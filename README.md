@@ -76,9 +76,18 @@ GET /api/portfolio/{portfolioId}/positions_report/defi
 Endpoints
 
 GET /api/portfolio/{portfolioId}/capital_gains_report?page=1&pageSize=20  
+GET /api/portfolio/{portfolioId}/capital_gains_report/filters  
 GET /api/portfolio/{portfolioId}/sanity_check_report?page=1&pageSize=20  
 GET /api/portfolio/{portfolioId}/calculation_summary_report?page=1&pageSize=20  
 GET /api/portfolio/{portfolioId}/fiscal_report?page=1&pageSize=20
+
+Capital gains filters
+
+- digitalAssetTicker (operator: contains_in)
+- report_year (operator: =)
+- portfolioConnection (operator: =)
+
+If `isSeparateSetting=true`, run capital gains report with several filters using values from `/capital_gains_report/filters`.
 
 Supported filters
 
