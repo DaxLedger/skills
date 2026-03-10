@@ -10,6 +10,10 @@ Capabilities:
 - Portfolio findings
 - Position snapshot (balances and values)
 - Position snapshot graph by ticker
+- Capital gains report
+- Sanity check report
+- Calculation summary report
+- Fiscal report
 - Transactions history
 - Transaction filtering
 - Multi-filter queries
@@ -52,7 +56,7 @@ GET /api/portfolio/{portfolioId}/transactions
 Endpoints
 
 GET /api/portfolio/{portfolioId}/findings?page=1&pageSize=20  
-GET /api/portfolio/{portfolioId}/findings/{txId}
+GET /api/portfolio/{portfolioId}/finding/{ruleId}
 
 ---
 
@@ -62,6 +66,17 @@ Endpoints
 
 GET /api/portfolio/{portfolioId}/position_snapshot?page=1&pageSize=20  
 GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span=30
+
+---
+
+# Reports
+
+Endpoints
+
+GET /api/portfolio/{portfolioId}/capital_gains_report?page=1&pageSize=20  
+GET /api/portfolio/{portfolioId}/sanity_check_report?page=1&pageSize=20  
+GET /api/portfolio/{portfolioId}/calculation_summary_report?page=1&pageSize=20  
+GET /api/portfolio/{portfolioId}/fiscal_report?page=1&pageSize=20
 
 Supported filters
 

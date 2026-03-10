@@ -55,6 +55,10 @@ Authorization: Bearer {{token}}
 | Get finding by rule id                      | GET /api/portfolio/{portfolioId}/finding/{ruleId}                          | references/apis.md |
 | Get position snapshot (balances and values) | GET /api/portfolio/{portfolioId}/position_snapshot?page=1&pageSize=20     | references/apis.md |
 | Get token position graph                    | GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span=30 | references/apis.md |
+| Get capital gains report                    | GET /api/portfolio/{portfolioId}/capital_gains_report?page=1&pageSize=20  | references/apis.md |
+| Get sanity check report                     | GET /api/portfolio/{portfolioId}/sanity_check_report?page=1&pageSize=20   | references/apis.md |
+| Get calculation summary report              | GET /api/portfolio/{portfolioId}/calculation_summary_report?page=1&pageSize=20 | references/apis.md |
+| Get fiscal report                           | GET /api/portfolio/{portfolioId}/fiscal_report?page=1&pageSize=20         | references/apis.md |
 | List transactions                           | GET /api/portfolio/{portfolioId}/transactions?page=1&pageSize=20          | references/apis.md |
 | Filter transactions                         | GET /api/portfolio/{portfolioId}/transactions?filter=<BASE64>             | references/apis.md |
 
@@ -131,6 +135,74 @@ Query params
 span (7, 30, 365, -1)
 
 Use this endpoint when the user asks about a specific token holding over time or on a specific date range.
+
+---
+
+# Reports
+
+## Capital Gains Report
+
+Endpoint
+
+GET /api/portfolio/{portfolioId}/capital_gains_report
+
+Query params
+
+page  
+pageSize  
+filter  
+sort
+
+Use this endpoint when the user asks for gains/losses by asset and realized/unrealized values.
+
+---
+
+## Sanity Check Report
+
+Endpoint
+
+GET /api/portfolio/{portfolioId}/sanity_check_report
+
+Query params
+
+page  
+pageSize
+
+Use this endpoint when the user asks for balance mismatches between calculated and reported balances.
+
+---
+
+## Calculation Summary Report
+
+Endpoint
+
+GET /api/portfolio/{portfolioId}/calculation_summary_report
+
+Query params
+
+page  
+pageSize  
+filter  
+sort
+
+Use this endpoint when the user asks for high-level calculated totals and summary metrics.
+
+---
+
+## Fiscal Report
+
+Endpoint
+
+GET /api/portfolio/{portfolioId}/fiscal_report
+
+Query params
+
+page  
+pageSize  
+filter  
+sort
+
+Use this endpoint when the user asks for fiscal/tax line items with acquisition, sale, and holding details.
 
 ---
 

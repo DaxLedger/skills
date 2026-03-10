@@ -73,6 +73,58 @@ span
 
 ---
 
+# Reports
+
+## Capital Gains Report
+
+GET /api/portfolio/{portfolioId}/capital_gains_report
+
+Query parameters:
+
+page  
+pageSize  
+filter  
+sort  
+
+---
+
+## Sanity Check Report
+
+GET /api/portfolio/{portfolioId}/sanity_check_report
+
+Query parameters:
+
+page  
+pageSize  
+
+---
+
+## Calculation Summary Report
+
+GET /api/portfolio/{portfolioId}/calculation_summary_report
+
+Query parameters:
+
+page  
+pageSize  
+filter  
+sort  
+
+---
+
+## Fiscal Report
+
+GET /api/portfolio/{portfolioId}/fiscal_report
+
+Query parameters:
+
+page  
+pageSize  
+filter  
+sort  
+
+---
+
 # Transactions
 
 GET /api/portfolio/{portfolioId}/transactions
