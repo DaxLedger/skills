@@ -55,6 +55,7 @@ Authorization: Bearer {{token}}
 | Get finding by rule id                      | GET /api/portfolio/{portfolioId}/finding/{ruleId}                          | references/apis.md |
 | Get position snapshot (balances and values) | GET /api/portfolio/{portfolioId}/position_snapshot?page=1&pageSize=20     | references/apis.md |
 | Get token position graph                    | GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span=30 | references/apis.md |
+| Get DeFi positions                          | GET /api/portfolio/{portfolioId}/positions_report/defi                     | references/apis.md |
 | Get capital gains report                    | GET /api/portfolio/{portfolioId}/capital_gains_report?page=1&pageSize=20  | references/apis.md |
 | Get sanity check report                     | GET /api/portfolio/{portfolioId}/sanity_check_report?page=1&pageSize=20   | references/apis.md |
 | Get calculation summary report              | GET /api/portfolio/{portfolioId}/calculation_summary_report?page=1&pageSize=20 | references/apis.md |
@@ -135,6 +136,16 @@ Query params
 span (7, 30, 365, -1)
 
 Use this endpoint when the user asks about a specific token holding over time or on a specific date range.
+
+---
+
+## DeFi Positions
+
+Endpoint
+
+GET /api/portfolio/{portfolioId}/positions_report/defi
+
+Use this endpoint when the user asks to retrieve all DeFi positions.
 
 ---
 

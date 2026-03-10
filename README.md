@@ -10,6 +10,7 @@ Capabilities:
 - Portfolio findings
 - Position snapshot (balances and values)
 - Position snapshot graph by ticker
+- DeFi positions
 - Capital gains report
 - Sanity check report
 - Calculation summary report
@@ -66,6 +67,7 @@ Endpoints
 
 GET /api/portfolio/{portfolioId}/position_snapshot?page=1&pageSize=20  
 GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span=30
+GET /api/portfolio/{portfolioId}/positions_report/defi
 
 ---
 

@@ -73,6 +73,12 @@ span
 
 ---
 
+## DeFi Positions
+
+GET /api/portfolio/{portfolioId}/positions_report/defi
+
+---
+
 # Reports
 
 ## Capital Gains Report
