@@ -1,26 +1,56 @@
-
 # DAX Ledger API Reference
 
-Base URL  
+Base URL\
 https://app.daxledger.io
 
 ---
 
 # Authentication
 
-POST /api/auth/external_api
+## POST /api/auth/external_api
+
+### Request Example
+
+```json
+{
+  "APIKey": "your_api_key",
+  "APISecret": "your_api_secret"
+}
+```
+
+### Response
+
+```json
+{
+  "token": "your_access_token_here"
+}
+```
+
+Authorization header for authenticated requests:
+
+Authorization: Bearer `<token>`
 
 ---
 
 # List Portfolios
 
-GET /api/portfolios
+## GET /api/portfolios
+
+### Request Example
+
+GET https://app.daxledger.io/api/portfolios Authorization: Bearer
+`<token>`
 
 ---
 
 # Portfolio KPIs
 
-GET /api/portfolio/{portfolioId}/kpis/portfolio
+## GET /api/portfolio/{portfolioId}/kpis/portfolio
+
+### Request Example
+
+GET https://app.daxledger.io/api/portfolio/123/kpis/portfolio
+Authorization: Bearer `<token>`
 
 ---
 
@@ -32,8 +62,14 @@ GET /api/portfolio/{portfolioId}/findings
 
 Query parameters:
 
-page  
-pageSize  
+page\
+pageSize
+
+### Request Example
+
+GET
+https://app.daxledger.io/api/portfolio/123/findings?page=1&pageSize=20
+Authorization: Bearer `<token>`
 
 ---
 
@@ -41,21 +77,32 @@ pageSize
 
 GET /api/portfolio/{portfolioId}/finding/{ruleId}
 
+### Request Example
+
+GET
+https://app.daxledger.io/api/portfolio/123/finding/001
+Authorization: Bearer `<token>`
 
 ---
 
 # Position Snapshot
 
-## Positions Snapshot (balances and values)
+## Positions Snapshot
 
 GET /api/portfolio/{portfolioId}/position_snapshot
 
 Query parameters:
 
-page  
-pageSize  
-filter  
-sort  
+page\
+pageSize\
+filter\
+sort
+
+### Request Example
+
+GET
+https://app.daxledger.io/api/portfolio/123/position_snapshot?page=1&pageSize=20
+Authorization: Bearer `<token>`
 
 ---
 
@@ -66,6 +113,7 @@ GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}
 Query parameters:
 
 span
+
 - 7: 7 days interval
 - 30: 30 days interval
 - 365: 365 days interval
@@ -77,6 +125,11 @@ span
 
 GET /api/portfolio/{portfolioId}/positions_report/defi
 
+### Request Example
+
+GET https://app.daxledger.io/api/portfolio/123/positions_report/defi
+Authorization: Bearer `<token>`
+
 ---
 
 # Reports
@@ -85,24 +138,36 @@ GET /api/portfolio/{portfolioId}/positions_report/defi
 
 GET /api/portfolio/{portfolioId}/capital_gains_report
 
-Available filters endpoint:
+Query parameters:
+
+page\
+pageSize\
+filter\
+sort
+
+### Request Example
+
+GET
+https://app.daxledger.io/api/portfolio/123/capital_gains_report?page=1&pageSize=20
+Authorization: Bearer `<token>`
+
+### Available Filters
+
+- year (operator: '=')
+- digitalAssetTicker (operator: 'contains_in')
+- portfolioConnection (operator: '=')
+
+---
+
+## Capital Gains Available Filters
 
 GET /api/portfolio/{portfolioId}/capital_gains_report/filters
 
-Query parameters:
+### Request Example
 
-page  
-pageSize  
-filter  
-sort  
-
-Capital gains filters:
-
-- digitalAssetTicker (operator: contains_in)
-- report_year (operator: =)
-- portfolioConnection (operator: =)
-
-If `isSeparateSetting=true` in capital gains response, run the report with several filters using values from `/capital_gains_report/filters`.
+GET
+https://app.daxledger.io/api/portfolio/123/capital_gains_report/filters
+Authorization: Bearer `<token>`
 
 ---
 
@@ -112,8 +177,21 @@ GET /api/portfolio/{portfolioId}/sanity_check_report
 
 Query parameters:
 
-page  
-pageSize  
+page\
+pageSize\
+filter
+
+### Request Example
+
+GET
+https://app.daxledger.io/api/portfolio/123/sanity_check_report?page=1&pageSize=20
+Authorization: Bearer `<token>`
+
+### Available Filters
+
+- portfolioConnectionName (operator: 'contains_in')
+- digitalAssetTicker (operator: 'contains_in')
+- ignoreSpamTokens (operator: '=', value: true or false)
 
 ---
 
@@ -123,10 +201,21 @@ GET /api/portfolio/{portfolioId}/calculation_summary_report
 
 Query parameters:
 
-page  
-pageSize  
-filter  
-sort  
+page\
+pageSize\
+filter\
+sort
+
+### Request Example
+
+GET
+https://app.daxledger.io/api/portfolio/123/calculation_summary_report?page=1&pageSize=20
+Authorization: Bearer `<token>`
+
+### Available Filters
+
+- portfolioConnection (operator: '=')
+- year (operator: '=')
 
 ---
 
@@ -136,10 +225,24 @@ GET /api/portfolio/{portfolioId}/fiscal_report
 
 Query parameters:
 
-page  
-pageSize  
-filter  
-sort  
+page\
+pageSize\
+filter\
+sort
+
+### Request Example
+
+GET
+https://app.daxledger.io/api/portfolio/123/fiscal_report?page=1&pageSize=20
+Authorization: Bearer `<token>`
+
+### Available Filters
+
+- portfolioConnectionName (operator: 'contains_in')
+- digitalAssetTicker (operator: 'contains_in')
+- saleDate (operator: 'between', value: startDate and endDate)
+- acquisitionDate (operator: 'between', value: startDate and endDate)
+- holdingTerm (operator: '=', value: short-term, long-term, all)
 
 ---
 
@@ -149,66 +252,24 @@ GET /api/portfolio/{portfolioId}/transactions
 
 Query parameters:
 
-page  
-pageSize  
-filter  
+page\
+pageSize\
+filter
 
----
+### Request Example
 
-# Filters
+GET
+https://app.daxledger.io/api/portfolio/123/transactions?page=1&pageSize=20
+Authorization: Bearer `<token>`
 
-## Transaction Hash
+### Available Filters
 
-{"transactionHash":{"operator":"contains","value":"123456789"}}
-
----
-
-## Transaction Date
-
-{"transactionDate":{"operator":"between","value":{"startDate":"2026-03-01T00:00:00Z","endDate":"2026-03-02T23:59:59Z"}}}
-
----
-
-## Transaction Type
-
-{"transactionType":{"operator":"contains_in","value":["computed-reward"]}}
-
-Available values:
-
-airdrop  
-bonus  
-computed-deposit  
-computed-reward  
-deposit  
-other  
-reward  
-staking  
-trade  
-unknown  
-unstaking  
-withdrawal  
-
----
-
-# Combining Filters
-
-Multiple filters can be combined in the same JSON object before encoding.
-
-Example:
-
-{
-  "transactionHash": { "operator": "contains", "value": "123456" },
-  "transactionType": { "operator": "contains_in", "value": ["trade"] },
-  "transactionDate": {
-    "operator": "between",
-    "value": {
-      "startDate": "2026-03-01T00:00:00Z",
-      "endDate": "2026-03-31T23:59:59Z"
-    }
-  }
-}
-
-Encode the JSON to Base64 before sending it as the `filter` query parameter.
+- transactionHash (operator: 'contains')
+- address (operator: 'contains_in')
+- portfolioConnectionName (operator: 'contains_in')
+- digitalAssetTicker (operator: 'contains_in')
+- transactionType (operator: 'contains_in')
+- transactionDate (operator: 'between', value: startDate and endDate)
 
 ---
 
@@ -226,16 +287,17 @@ Buffer.from(JSON.stringify(filter)).toString("base64")
 
 # Epoch Fields
 
-If an API field is an epoch timestamp, convert it to ISO date before returning it to the user.
+If an API field is an epoch timestamp, convert it to ISO date before
+returning it.
 
 Rule:
 
-- 10 digits -> seconds
-- 13 digits -> milliseconds
+10 digits -\> seconds 13 digits -\> milliseconds
 
-Example (Node):
+Example:
 
-new Date(Number(epoch) < 1e12 ? Number(epoch) * 1000 : Number(epoch)).toISOString()
+new Date(Number(epoch) \< 1e12 ? Number(epoch) \* 1000 :
+Number(epoch)).toISOString()
 
 ---
 
@@ -245,4 +307,6 @@ page starts at 1
 
 pageSize default = 20
 
-Continue requesting pages while items.length < total
+Continue requesting pages while:
+
+items.length < total
