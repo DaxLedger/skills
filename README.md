@@ -28,11 +28,11 @@ https://app.daxledger.io
 
 # Skills
 
-skills/daxledger-api
+daxledger-api
 
 Entry point
 
-skills/daxledger-api/SKILL.md
+daxledger-api/SKILL.md
 
 ---
 
