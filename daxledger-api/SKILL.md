@@ -19,6 +19,16 @@ https://app.daxledger.io
 | DAXLEDGER_API_KEY    | API key used to authenticate    |
 | DAXLEDGER_API_SECRET | API secret used to authenticate |
 
+
+--- 
+# TL;DR — Best Practice
+To get the aggregated portfolio valuation in a fast and canonical way, use:
+- GET /api/portfolio/{portfolioId}/position_snapshot/graph?span={n}
+Example: span=7 for 7 days.  
+To get historical data for a specific token when asset-level detail is needed, use:
+- GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span={n}  
+- Practical rule: by default, automations/agents should use the aggregated endpoint. Only use per-ticker aggregation when it is explicitly requested (force_by_ticker=true) or when granular asset-level analysis is required.
+
 ---
 
 # Authentication
