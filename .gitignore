@@ -1,0 +1,56 @@
+# --- OS / Editor cruft ---
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# JetBrains / VSCode
+.idea/
+*.iml
+modules.xml
+.idea_modules/
+.vscode/
+
+# Env / secrets
+.env
+.env.*
+.envrc
+*.local.env
+
+# Tooling
+*.tgz
+
+# --- Testing / reports ---
+
+jest-html-reporters-*.html
+test-report.xml
+test-results/
+playwright-report/
+playwright/.cache/
+
+
+# Ignore local config overrides
+config.local.*
+openclaw.local.json
+openclaw.override.json

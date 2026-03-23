@@ -9,6 +9,7 @@ Capabilities:
 - Portfolio KPIs
 - Portfolio findings
 - Position snapshot (balances and values)
+- Position snapshot graph (overall)
 - Position snapshot graph by ticker
 - DeFi positions
 - Capital gains report
@@ -66,7 +67,8 @@ GET /api/portfolio/{portfolioId}/finding/{ruleId}
 Endpoints
 
 GET /api/portfolio/{portfolioId}/position_snapshot?page=1&pageSize=20  
-GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span=30
+GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span=30  
+GET /api/portfolio/{portfolioId}/position_snapshot/graph?span=7  
 GET /api/portfolio/{portfolioId}/positions_report/defi
 
 ---

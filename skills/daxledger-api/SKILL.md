@@ -46,23 +46,25 @@ Authorization: Bearer {{token}}
 
 # Pick Your Endpoint
 
-| You need                                    | Endpoint                                                                  | Ref                |
-| ------------------------------------------- | ------------------------------------------------------------------------- | ------------------ |
-| Authenticate                                | POST /api/auth/external_api                                               | references/apis.md |
-| List portfolios                             | GET /api/portfolios                                                       | references/apis.md |
-| Get KPIs                                    | GET /api/portfolio/{portfolioId}/kpis/portfolio                           | references/apis.md |
-| Get findings (problems in portfolio)        | GET /api/portfolio/{portfolioId}/findings?page=1&pageSize=20              | references/apis.md |
-| Get finding by rule id                      | GET /api/portfolio/{portfolioId}/finding/{ruleId}                          | references/apis.md |
-| Get position snapshot (balances and values) | GET /api/portfolio/{portfolioId}/position_snapshot?page=1&pageSize=20     | references/apis.md |
-| Get token position graph                    | GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span=30 | references/apis.md |
-| Get DeFi positions                          | GET /api/portfolio/{portfolioId}/positions_report/defi                     | references/apis.md |
-| Get capital gains report                    | GET /api/portfolio/{portfolioId}/capital_gains_report?page=1&pageSize=20  | references/apis.md |
-| Get capital gains available filters         | GET /api/portfolio/{portfolioId}/capital_gains_report/filters              | references/apis.md |
-| Get sanity check report                     | GET /api/portfolio/{portfolioId}/sanity_check_report?page=1&pageSize=20   | references/apis.md |
+| You need                                    | Endpoint                                                                       | Ref                |
+| ------------------------------------------- | ------------------------------------------------------------------------------ | ------------------ |
+| Authenticate                                | POST /api/auth/external_api                                                    | references/apis.md |
+| List portfolios                             | GET /api/portfolios                                                            | references/apis.md |
+| Get KPIs                                    | GET /api/portfolio/{portfolioId}/kpis/portfolio                                | references/apis.md |
+| Get findings (problems in portfolio)        | GET /api/portfolio/{portfolioId}/findings?page=1&pageSize=20                   | references/apis.md |
+| Get finding by rule id                      | GET /api/portfolio/{portfolioId}/finding/{ruleId}                              | references/apis.md |
+| Get position snapshot (balances and values) | GET /api/portfolio/{portfolioId}/position_snapshot?page=1&pageSize=20          | references/apis.md |
+| Get portfolio position (variation) graph    | GET /api/portfolio/{portfolioId}/position_snapshot/graph?span=30               | references/apis.md |
+| Get token position graph (variation)        | GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span=30      | references/apis.md |
+| Get DeFi positions                          | GET /api/portfolio/{portfolioId}/positions_report/defi                         | references/apis.md |
+| Get capital gains report                    | GET /api/portfolio/{portfolioId}/capital_gains_report?page=1&pageSize=20       | references/apis.md |
+| Get capital gains available filters         | GET /api/portfolio/{portfolioId}/capital_gains_report/filters                  | references/apis.md |
+| Get sanity check report                     | GET /api/portfolio/{portfolioId}/sanity_check_report?page=1&pageSize=20        | references/apis.md |
 | Get calculation summary report              | GET /api/portfolio/{portfolioId}/calculation_summary_report?page=1&pageSize=20 | references/apis.md |
-| Get fiscal report                           | GET /api/portfolio/{portfolioId}/fiscal_report?page=1&pageSize=20         | references/apis.md |
-| List transactions                           | GET /api/portfolio/{portfolioId}/transactions?page=1&pageSize=20          | references/apis.md |
-| Filter transactions                         | GET /api/portfolio/{portfolioId}/transactions?filter=<BASE64>             | references/apis.md |
+| Get fiscal report                           | GET /api/portfolio/{portfolioId}/fiscal_report?page=1&pageSize=20              | references/apis.md |
+| List transactions                           | GET /api/portfolio/{portfolioId}/transactions?page=1&pageSize=20               | references/apis.md |
+| Filter transactions                         | GET /api/portfolio/{portfolioId}/transactions?filter=<BASE64>                  | references/apis.md |
+| Get compliance report                       | GET /api/portfolio/{portfolioId}/compliance?page=1&pageSize=20                 | references/apis.md |
 
 ---
 
@@ -126,6 +128,20 @@ Use this endpoint when the user asks about token balance or token value.
 
 ---
 
+## Position Snapshot Graph (Overall)
+
+Endpoint
+
+GET /api/portfolio/{portfolioId}/position_snapshot/graph/
+
+Query params
+
+span (7, 30, 365, -1)
+
+Use this endpoint when the user asks about variation in balance over time or on a specific date range.
+
+---
+
 ## Position Snapshot Graph By Ticker
 
 Endpoint
@@ -147,6 +163,30 @@ Endpoint
 GET /api/portfolio/{portfolioId}/positions_report/defi
 
 Use this endpoint when the user asks to retrieve all DeFi positions.
+
+---
+
+# Compliance
+
+## Portfolio Compliance
+
+Endpoint
+
+GET /api/portfolio/{portfolioId}/compliance
+
+Query params
+
+page  
+pageSize  
+filter
+
+Use this endpoint when the user asks about:
+
+- classified addresses
+- unclassified addresses
+- compliance issues
+- compliance status of addresses
+- blockchain address compliance
 
 ---
 
@@ -328,7 +368,7 @@ Rule:
 
 Example (Node):
 
-new Date(Number(epoch) < 1e12 ? Number(epoch) * 1000 : Number(epoch)).toISOString()
+new Date(Number(epoch) < 1e12 ? Number(epoch) \* 1000 : Number(epoch)).toISOString()
 
 ---
 
