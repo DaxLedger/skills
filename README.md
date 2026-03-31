@@ -117,8 +117,8 @@ Example:
 "transactionDate": {
 "operator": "between",
 "value": {
-"startDate": "2026-03-01T00:00:00Z",
-"endDate": "2026-03-31T23:59:59Z"
+"startDate": "2026-03-01",
+"endDate": "2026-03-31"
 }
 }
 }
@@ -140,7 +140,7 @@ Rule:
 
 Example (Node):
 
-new Date(Number(epoch) < 1e12 ? Number(epoch) * 1000 : Number(epoch)).toISOString()
+new Date(Number(epoch) < 1e12 ? Number(epoch) \* 1000 : Number(epoch)).toISOString()
 
 ---
 
