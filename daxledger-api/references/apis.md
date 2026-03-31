@@ -256,14 +256,67 @@ Authorization: Bearer <token>
 ### Available Filters
 
 - address (operator: 'contains_in')
+- riskQuick (operator: 'and_multiple_column')
 
 ### Filter Example
+
+#### Address
 
 ```json
 {
   "address": {
     "operator": "contains_in",
     "value": ["0x019EdcB493Bd91e2b25b70f26D5d9041Fd7EF946"]
+  }
+}
+```
+
+#### RiskQuick
+
+Low
+
+```json
+{
+  "riskQuick": {
+    "operator": "and_multiple_column",
+    "multipleAndField": ["risk", "risk"],
+    "value": [{ "gt": 0 }, { "lte": 3 }]
+  }
+}
+```
+
+Medium
+
+```json
+{
+  "riskQuick": {
+    "operator": "and_multiple_column",
+    "multipleAndField": ["risk", "risk"],
+    "value": [{ "gt": 3 }, { "lte": 6 }]
+  }
+}
+```
+
+High
+
+```json
+{
+  "riskQuick": {
+    "operator": "and_multiple_column",
+    "multipleAndField": ["risk", "risk"],
+    "value": [{ "gt": 6 }, { "lte": 9 }]
+  }
+}
+```
+
+Critical
+
+```json
+{
+  "riskQuick": {
+    "operator": "and_multiple_column",
+    "multipleAndField": ["risk", "risk"],
+    "value": [{ "gt": 9 }]
   }
 }
 ```
