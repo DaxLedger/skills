@@ -62,6 +62,14 @@ GET /api/portfolio/{portfolioId}/finding/{ruleId}
 
 ---
 
+# Compiance
+
+Endpoints
+
+GET /api/portfolio/{portfolioId}/compliance
+
+---
+
 # Position Snapshot
 
 Endpoints
