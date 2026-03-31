@@ -891,7 +891,7 @@ HTTP 200:
 - portfolioConnectionName (operator: 'contains_in')
 - digitalAssetTicker (operator: 'contains_in')
 - transactionType (operator: 'contains_in')
-- transactionDate (operator: 'between', value: startDate and endDate)
+- transactionDate (operator: 'between', value: startDate and endDate, format: YYYY-MM-DD)
 
 ---
 

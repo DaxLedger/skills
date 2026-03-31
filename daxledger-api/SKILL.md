@@ -19,14 +19,16 @@ https://app.daxledger.io
 | DAXLEDGER_API_KEY    | API key used to authenticate    |
 | DAXLEDGER_API_SECRET | API secret used to authenticate |
 
+---
 
---- 
 # TL;DR — Best Practice
+
 To get the aggregated portfolio valuation in a fast and canonical way, use:
+
 - GET /api/portfolio/{portfolioId}/position_snapshot/graph?span={n}
-Example: span=7 for 7 days.  
-To get historical data for a specific token when asset-level detail is needed, use:
-- GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span={n}  
+  Example: span=7 for 7 days.  
+  To get historical data for a specific token when asset-level detail is needed, use:
+- GET /api/portfolio/{portfolioId}/position_snapshot/graph/{ticker}?span={n}
 - Practical rule: by default, automations/agents should use the aggregated endpoint. Only use per-ticker aggregation when it is explicitly requested (force_by_ticker=true) or when granular asset-level analysis is required.
 
 ---
@@ -298,7 +300,7 @@ Operator: contains
 
 Operator: between
 
-{"transactionDate":{"operator":"between","value":{"startDate":"2026-03-01T00:00:00Z","endDate":"2026-03-02T23:59:59Z"}}}
+{"transactionDate":{"operator":"between","value":{"startDate":"2026-03-01","endDate":"2026-03-02"}}}
 
 ---
 
@@ -343,8 +345,8 @@ Example JSON:
 "transactionDate": {
 "operator": "between",
 "value": {
-"startDate": "2026-03-01T00:00:00Z",
-"endDate": "2026-03-31T23:59:59Z"
+"startDate": "2026-03-01",
+"endDate": "2026-03-31"
 }
 }
 }
